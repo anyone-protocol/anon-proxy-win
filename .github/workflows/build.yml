@@ -36,3 +36,12 @@ jobs:
       working-directory: ${{github.workspace}}
       run: |
         msbuild /m /p:Configuration=${{matrix.configuration}} /p:Platform=${{matrix.platform}} /p:PlatformToolset=v141_xp proxychains.exe.sln
+
+    - name: Run tests
+      shell: cmd
+      run: |
+        if "${{ matrix.platform }}" == "x86" (
+          win32_output\test_x86.exe
+        ) else (
+          win32_output\test_x64.exe
+        )
