@@ -40,8 +40,28 @@ jobs:
     - name: Run tests
       shell: cmd
       run: |
-        if "${{ matrix.platform }}" == "x86" (
+        IF %PLATFORM% EQU x86 (
           win32_output\test_x86.exe
-        ) else (
+        ) ELSE (
           win32_output\test_x64.exe
         )
+      env:
+        PLATFORM: ${{ matrix.platform }}
+
+    - name: Prepare release package
+      shell: pwsh
+      run: |
+        $platform = "${{ matrix.platform }}"
+        mkdir anon-proxy-win
+        
+        # Copy only the required files
+        Copy-Item "win32_output/anon-proxy_$($platform).exe" "anon-proxy-win/anon-proxy_$($platform).exe"
+        Copy-Item "win32_output/proxychains_hook_$($platform).dll" "anon-proxy-win/"
+        Copy-Item "win32_output/anon-proxy-helper_win32_$($platform).exe" "anon-proxy-win/"
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: anon-proxy-win-${{ matrix.platform }}
+        path: anon-proxy-win
+        if-no-files-found: error
