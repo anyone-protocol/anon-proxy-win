@@ -14,10 +14,9 @@ jobs:
         git submodule update --init --recursive --remote
       shell: cmd
       
-      
   build:
     needs: update-submodules
-    runs-on: windows-latest
+    runs-on: windows-2019
     strategy:
       matrix:
         configuration: [Release]
@@ -30,8 +29,10 @@ jobs:
 
     - name: Add MSBuild to PATH
       uses: microsoft/setup-msbuild@v1.3.1
+      with:
+        vs-version: '16.0'
 
     - name: Build solution
       working-directory: ${{github.workspace}}
       run: |
-        msbuild /m /p:Configuration=${{matrix.configuration}} /p:Platform=${{matrix.platform}} proxychains.exe.sln
+        msbuild /m /p:Configuration=${{matrix.configuration}} /p:Platform=${{matrix.platform}} /p:PlatformToolset=v141_xp proxychains.exe.sln
