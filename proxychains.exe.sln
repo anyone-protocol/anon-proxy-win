@@ -1,9 +1,8 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "proxychains.exe", "proxychains.exe\proxychains.exe.vcxproj", "{3F3F5D43-FEE4-4656-A992-D4D0371E303D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "anon-proxy", "proxychains.exe\proxychains.exe.vcxproj", "{3F3F5D43-FEE4-4656-A992-D4D0371E303D}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "proxychains_hook.dll", "proxychains_hook.dll\proxychains_hook.dll.vcxproj", "{FDBD3C8E-2DDF-4BBB-A157-0CB0054D5782}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -14,7 +13,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test", "test\test.vcxproj",
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libMinHook", "minhook\build\VC15\libMinHook.vcxproj", "{F142A341-5EE0-442D-A15F-98AE9B48DBAE}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "proxychains_helper", "proxychains_helper\proxychains_helper.vcxproj", "{91EF5C95-F872-47AE-B045-C39C7DBE2FF0}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "anon-proxy-helper", "proxychains_helper\proxychains_helper.vcxproj", "{91EF5C95-F872-47AE-B045-C39C7DBE2FF0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
