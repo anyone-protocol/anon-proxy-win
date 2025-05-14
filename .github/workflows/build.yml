@@ -1,0 +1,37 @@
+name: Build
+
+on: [push]
+
+jobs:
+
+  update-submodules:
+    runs-on: windows-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    - name: update submodules 
+      run: |
+        git submodule update --init --recursive --remote
+      shell: cmd
+      
+      
+  build:
+    needs: update-submodules
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        configuration: [Release]
+        platform: [x64, x86]
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        submodules: 'recursive'
+
+    - name: Add MSBuild to PATH
+      uses: microsoft/setup-msbuild@v1.3.1
+
+    - name: Build solution
+      working-directory: ${{github.workspace}}
+      run: |
+        msbuild /m /p:Configuration=${{matrix.configuration}} /p:Platform=${{matrix.platform}} proxychains.exe.sln
