@@ -1,8 +1,9 @@
 name: Build
 
- push:
+on:
+  push:
     tags:
-      - '*'
+      - 'v*'
     branches:
       - 'master'
   pull_request:
@@ -84,6 +85,3 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "release-artifacts/anon-proxy-win-*.zip"
-          allowUpdates: true
-          draft: false
-          makeLatest: true
